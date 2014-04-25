@@ -1,0 +1,50 @@
+<div id="login-container" class="container content">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+            <form class="reg-page">
+                <div class="reg-header">
+                    <div class="reg-block-header">
+                        <h2>Connexion</h2>
+                        <ul class="list-inline style-icons text-center">
+                            <li>
+                                <a href="mailto:jocelyn.ntakpe@sopra.com">
+                                    <i class="fa fa-envelope fa-2x"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/jntakpe">
+                                    <i class="fa fa-github fa-2x"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/jntakpe">
+                                    <i class="fa fa-twitter fa-2x"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" placeholder="Login Sopra" class="form-control" ng-model="username">
+                </div>
+                <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" placeholder="Mot de passe" class="form-control" ng-model="password">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="rememberMe" checked> Rester connecté ?
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn-u pull-right" type="submit" ng-click="login()">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
