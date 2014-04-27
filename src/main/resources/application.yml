@@ -1,4 +1,6 @@
 spring:
+  server:
+    contextPath : /pp
   datasource:
     url: jdbc:postgresql://localhost:5432/pp
     username: postgres

@@ -1,10 +1,10 @@
 package com.github.jntakpe.pp.security;
 
-import com.github.jntakpe.pp.security.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,7 +17,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -32,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private AjaxLogoutSuccessHandler logoutSuccessHandler;
 
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authBuilder) throws Exception {
         authBuilder.inMemoryAuthentication()
@@ -57,7 +57,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .rememberMe().and()
                 .formLogin().loginProcessingUrl("/login").loginPage("/index.html").successHandler(successHandler)
                 .failureHandler(failureHandler).and()
-                .logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler).deleteCookies("JSESSIONID").permitAll().and()
+                .logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler).deleteCookies("JSESSIONID")
+                .permitAll().and()
+                .csrf().disable()
+                .headers().disable()
                 .authorizeRequests()
                 .antMatchers("/**").authenticated()
                 .antMatchers("/health").hasAuthority(Authorities.ROLE_ADMIN.name())

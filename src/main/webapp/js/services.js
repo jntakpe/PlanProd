@@ -37,7 +37,7 @@ ppApp.factory('PPAuthService', ['$rootScope', '$http', 'authService', function (
          * @param [loginFail] callback en cas d'échec de l'authentification
          */
         login: function (username, password, rememberMe, loginOK, loginFail) {
-            var data = "j_username=" + username + "&j_password=" + password + "&_spring_security_remember_me=" +
+            var data = "username=" + username + "&password=" + password + "&spring_security_remember_me=" +
                 rememberMe + "&submit=Login";
             $http.post('login', data, {
                 headers: {

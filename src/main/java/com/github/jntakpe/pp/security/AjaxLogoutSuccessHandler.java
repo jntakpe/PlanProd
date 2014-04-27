@@ -16,7 +16,8 @@ import java.io.IOException;
  * @author jntakpe
  */
 @Component
-public class AjaxLogoutSuccessHandler extends AbstractAuthenticationTargetUrlRequestHandler implements LogoutSuccessHandler {
+public class AjaxLogoutSuccessHandler extends AbstractAuthenticationTargetUrlRequestHandler
+        implements LogoutSuccessHandler  {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws

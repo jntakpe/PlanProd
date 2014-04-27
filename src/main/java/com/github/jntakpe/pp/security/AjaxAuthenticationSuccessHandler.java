@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author jntakpe
  */
 @Component
-public class AjaxAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class AjaxAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler  {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
