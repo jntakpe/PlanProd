@@ -7,4 +7,6 @@ spring:
     password: sopra*
     driverClassName: org.postgresql.Driver
 server:
-  contextPath : /pp
+  contextPath: /pp
+management:
+  contextPath: /admin

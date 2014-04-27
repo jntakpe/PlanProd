@@ -29,7 +29,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private AjaxLogoutSuccessHandler logoutSuccessHandler;
 
-    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authBuilder) throws Exception {
         authBuilder.inMemoryAuthentication()
@@ -61,17 +60,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .headers().disable()
                 .authorizeRequests()
                 .antMatchers("/**").authenticated()
-                .antMatchers("/health").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/dump").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/trace").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/info").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/beans").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/autoconfig").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/env").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/env/**").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/metrics").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/metrics/**").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/mappings").hasAuthority(Authorities.ROLE_ADMIN.name())
-                .antMatchers("/configprops").hasAuthority(Authorities.ROLE_ADMIN.name());
+                .antMatchers("/admin/**").hasAuthority(Authorities.ROLE_ADMIN.name());
     }
 }
