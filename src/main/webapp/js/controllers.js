@@ -10,7 +10,6 @@ ppApp.controller('LoginController', ['$scope', '$location', 'PPAuthService',
                 $location.path('/home')
             });
         };
-
     }]);
 
 ppApp.controller('LogoutController', [function () {

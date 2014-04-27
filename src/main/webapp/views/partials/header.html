@@ -3,21 +3,14 @@
         <div class="container">
             <ul class="loginbar pull-right">
                 <li>
-                    <i class="fa fa-globe"></i>
-                    <a>Languages</a>
-                    <ul class="lenguages">
-                        <li class="active">
-                            <a href="#">English <i class="fa fa-check"></i></a>
-                        </li>
-                        <li><a href="#">Spanish</a></li>
-                        <li><a href="#">Russian</a></li>
-                        <li><a href="#">German</a></li>
-                    </ul>
+                    <i class="fa fa-user"></i>
+                    <a>{{user.login}}</a>
                 </li>
                 <li class="topbar-devider"></li>
-                <li><a href="page_faq.html">Help</a></li>
-                <li class="topbar-devider"></li>
-                <li><a href="page_login.html">Login</a></li>
+                <li>
+                    <i class="fa fa-users"></i>
+                    <a ng-repeat="authContainer in user.authorities">{{authContainer.authority}}<span ng-if="!$last">, </span></a>
+                </li>
             </ul>
         </div>
     </div>

@@ -12,17 +12,17 @@ ppApp.factory('PPAuthService', ['$rootScope', '$http', 'authService', function (
          * @param [authKO] callback en cas d'utilisateur non autorisé
          */
         authenticate: function (authOK, authKO) {
-            $http.get('user/auth')
+            $http.get('user')
                 .success(function (data) {
-                    if (data === '') {
-                        $rootScope.$broadcast('event:auth-loginRequired');
-                        if (authKO) {
-                            authKO();
-                        }
-                    } else {
+                    if (data.login) {
                         $rootScope.$broadcast('event:auth-authConfirmed');
                         if (authOK) {
                             authOK(data);
+                        }
+                    } else {
+                        $rootScope.$broadcast('event:auth-loginRequired');
+                        if (authKO) {
+                            authKO();
                         }
                     }
                 });

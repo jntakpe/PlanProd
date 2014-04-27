@@ -24,6 +24,9 @@
                         </ul>
                     </div>
                 </div>
+                <div ng-if="authenticationError" class="alert alert-danger fade in">
+                    <i class="fa fa-warning"></i><strong> Erreur : </strong> Échec de l'authentification
+                </div>
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <input type="text" placeholder="Login Sopra" class="form-control" ng-model="username">
@@ -34,12 +37,12 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <label class="checkbox">
                             <input type="checkbox" ng-model="rememberMe" checked> Rester connecté ?
                         </label>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <button class="btn-u pull-right" type="submit" ng-click="login()">
                             Login</button>
                     </div>

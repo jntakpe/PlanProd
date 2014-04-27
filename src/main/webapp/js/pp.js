@@ -13,9 +13,7 @@ ppApp.config(['$routeProvider',
 
         //Fonction utilisée lors d'un changement d'url pour vérifier si l'utilisateur est authentifié.
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
-            PPAuthService.authenticate(function () {
-                $rootScope.authOK = true;
-            });
+            PPAuthService.authenticate(function () {$rootScope.authOK = true;});
         });
 
         //Fonction utilisée lorsque le serveur renvoi le code 401
@@ -29,7 +27,7 @@ ppApp.config(['$routeProvider',
         //Fonction utilisée lorsque l'utilisateur s'est authentifié
         $rootScope.$on('event:auth-authConfirmed', function () {
             $rootScope.authOK = true;
-            $rootScope.utilisateur = UserResource.get();
+            $rootScope.user = UserResource.get();
             if ($location.path() === '/') { //Si la page de login est demandée alors que l'utilisateur est déjà loggé
                 $location.path('/home').replace();
             }
@@ -38,7 +36,7 @@ ppApp.config(['$routeProvider',
         //Fonction utilisée lorsque l'utilisateur se connecte
         $rootScope.$on('event:auth-loginConfirmed', function () {
             $rootScope.authOK = true;
-            $rootScope.utilisateur = UserResource.get();
+            $rootScope.user = UserResource.get();
             $location.path('/home').replace();
         });
 

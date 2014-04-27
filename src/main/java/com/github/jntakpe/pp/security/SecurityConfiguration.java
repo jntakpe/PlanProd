@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception {
         http
                 .exceptionHandling().authenticationEntryPoint(http401UnauthorizedEntryPoint).and()
                 .rememberMe().and()
@@ -61,5 +61,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/**").authenticated()
                 .antMatchers("/admin/**").hasAuthority(Authorities.ROLE_ADMIN.name());
+    }
+
+    private static enum Authorities {
+        ROLE_ADMIN,
+        ROLE_USER
     }
 }
