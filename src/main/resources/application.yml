@@ -1,8 +1,10 @@
 spring:
-  server:
-    contextPath : /pp
+  application:
+    name: pp
   datasource:
     url: jdbc:postgresql://localhost:5432/pp
     username: postgres
     password: sopra*
     driverClassName: org.postgresql.Driver
+server:
+  contextPath : /pp

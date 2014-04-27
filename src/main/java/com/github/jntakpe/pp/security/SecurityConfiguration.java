@@ -3,8 +3,6 @@ package com.github.jntakpe.pp.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -55,8 +53,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .exceptionHandling().authenticationEntryPoint(http401UnauthorizedEntryPoint).and()
                 .rememberMe().and()
-                .formLogin().loginProcessingUrl("/login").loginPage("/index.html").successHandler(successHandler)
-                .failureHandler(failureHandler).and()
+                .formLogin().loginProcessingUrl("/login").loginPage("/").successHandler(successHandler)
+                .failureHandler(failureHandler).permitAll().and()
                 .logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler).deleteCookies("JSESSIONID")
                 .permitAll().and()
                 .csrf().disable()
