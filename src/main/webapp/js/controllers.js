@@ -12,6 +12,10 @@ ppApp.controller('LoginController', ['$scope', '$location', 'PPAuthService',
         };
     }]);
 
-ppApp.controller('LogoutController', [function () {
-    "use strict";
-}]);
+ppApp.controller('LogoutController', ['$scope', '$location', 'PPAuthService',
+    function ($scope, $location, PPAuthService) {
+        "use strict";
+        PPAuthService.logout(function () {
+            $location.path('')
+        });
+    }]);

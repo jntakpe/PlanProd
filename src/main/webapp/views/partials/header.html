@@ -9,12 +9,18 @@
                 <li class="topbar-devider"></li>
                 <li>
                     <i class="fa fa-users"></i>
-                    <a ng-repeat="authContainer in user.authorities">{{authContainer.authority}}<span ng-if="!$last">, </span></a>
+                    <a ng-repeat="authContainer in user.authorities">{{authContainer.authority}}
+                        <span ng-if="!$last">, </span>
+                    </a>
+                </li>
+                <li class="topbar-devider"></li>
+                <li>
+                    <i class="fa fa-sign-out"></i>
+                    <a href="logout">DÉCONNEXION</a>
                 </li>
             </ul>
         </div>
     </div>
-
     <div class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="navbar-header">
