@@ -1,14 +1,12 @@
 var ppApp = angular.module('ppApp', ['http-auth-interceptor', 'ngResource', 'ngRoute']);
 
-ppApp.config(['$routeProvider', '$locationProvider',
-    function ($routeProvider, $locationProvider) {
+ppApp.config(['$routeProvider',
+    function ($routeProvider) {
         "use strict";
         $routeProvider
             .when('/home', {templateUrl: 'views/home.html', controller: 'HomeController'})
             .when('/logout', {templateUrl: 'views/login.html', controller: 'LogoutController'})
             .otherwise({templateUrl: 'views/login.html', controller: 'LoginController'});
-
-        $locationProvider.html5Mode(true);
     }]).run(['$rootScope', '$location', 'PPAuthService', 'UserResource',
     function ($rootScope, $location, PPAuthService, UserResource) {
         "use strict";
