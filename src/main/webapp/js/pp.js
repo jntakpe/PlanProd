@@ -5,8 +5,10 @@ ppApp.config(['$routeProvider',
         "use strict";
         $routeProvider
             .when('/home', {templateUrl: 'views/home.html', controller: 'HomeController'})
+            .when('/', {templateUrl: 'views/login.html', controller: 'LoginController'})
             .when('/logout', {templateUrl: 'views/login.html', controller: 'LogoutController'})
-            .otherwise({templateUrl: 'views/login.html', controller: 'LoginController'});
+            .when('/projects', {templateUrl: 'views/project.html', controller: 'ProjectController'})
+            .otherwise({redirectTo : '/home'});
     }]).run(['$rootScope', '$location', 'PPAuthService', 'UserResource',
     function ($rootScope, $location, PPAuthService, UserResource) {
         "use strict";

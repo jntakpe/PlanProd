@@ -19,3 +19,8 @@ ppApp.controller('LogoutController', ['$scope', '$location', 'PPAuthService',
             $location.path('')
         });
     }]);
+
+ppApp.controller('ProjectController', ['$scope', 'ProjectResource',
+    function ($scope, ProjectResource) {
+
+    }]);

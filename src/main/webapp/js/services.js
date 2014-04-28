@@ -3,6 +3,11 @@ ppApp.factory('UserResource', ['$resource', function ($resource) {
     return $resource('user');
 }]);
 
+ppApp.factory('ProjectResource', ['$resource', function ($resource) {
+    "use strict";
+    return $resource('project');
+}]);
+
 ppApp.factory('PPAuthService', ['$rootScope', '$http', 'authService', function ($rootScope, $http, authService) {
     "use strict";
     return {
