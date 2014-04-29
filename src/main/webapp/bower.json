@@ -2,12 +2,8 @@
     "name" : "Plan de production",
     "version" : "1.0.0-SNAPSHOT",
     "dependencies" : {
-        "jquery" : "latest",
-        "angular" : "latest",
-        "angular-resource" : "latest",
-        "angular-route" : "latest",
+        "jquery" : "1.11.0",
         "bootstrap" : "latest",
-        "font-awesome" : "latest",
-        "angular-http-auth" : "latest"
+        "font-awesome" : "latest"
     }
 }

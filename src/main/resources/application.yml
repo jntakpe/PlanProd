@@ -6,7 +6,11 @@ spring:
     username: postgres
     password: sopra*
     driverClassName: org.postgresql.Driver
+  thymeleaf:
+    prefix: /WEB-INF/views/
+    cache: false
 server:
   contextPath: /pp
 management:
   contextPath: /admin
+debug: false
