@@ -1,0 +1,56 @@
+<!doctype html>
+<!--[if IE 8]>
+<html class="ie8" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 9]>
+<html class="ie9" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if !IE]><!-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Plan de production}"/>
+    <meta name="author" content="jntakpe"/>
+
+    <title>Plan de production</title>
+
+    <link rel="shortcut icon" th:href="@{/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/bower_components/font-awesome/css/font-awesome.css}"/>
+    <link rel="stylesheet" th:href="@{/css/unify.css}"/>
+    <link rel="stylesheet" th:href="@{/css/unify-theme.css}"/>
+    <link rel="stylesheet" th:href="@{/css/pp.css}"/>
+</head>
+<body>
+<div id="login-container" class="container content">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+
+            <form class="reg-page" th:action="@{/login}" method="post">
+                <div class="reg-block-header">
+                    <h2 th:text="#{login.title}"></h2>
+                </div>
+                <div class="alert alert-danger collapse in" th:if="${message != null}">
+                    <i class="fa fa-warning"></i>
+                    <span th:text="${message}"></span>
+                    <button type="button" id="close-alert" class="close">&times;</button>
+                </div>
+
+                <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input name="username" type="text" th:placeholder="#{login.username}" class="form-control"
+                           autocomplete="off"/>
+                </div>
+                <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" th:placeholder="#{login.password}" class="form-control" name="password" />
+                </div>
+
+                <div class="row">
+                        <button class="btn btn-u btn-block" type="submit" th:text="#{btn.login}"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
