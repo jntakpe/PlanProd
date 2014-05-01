@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class FmkController {
 
+
     /**
      * Si l'utilisateur est connecté renvoi vers l'écran d'accueil sinon renvoi vers la page de login en ajoutant un
      * message d'erreur
@@ -29,5 +30,10 @@ public class FmkController {
     public ModelAndView login(HttpServletRequest request, @RequestParam(required = false) String error) {
         ModelAndView mv = new ModelAndView("fmk/login");
         return StringUtils.isBlank(error) ? mv.addObject("ERROR") : mv;
+    }
+
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String home() {
+        return "fmk/home";
     }
 }

@@ -34,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.
-                formLogin().loginProcessingUrl("/login-process").loginPage("/login").permitAll().and().
+                formLogin().loginProcessingUrl("/login-process").loginPage("/login").defaultSuccessUrl("/home", true).permitAll().and().
                 logout().logoutUrl("/logout").deleteCookies("JSESSIONID").permitAll().and().
                 authorizeRequests().
                 antMatchers("/**").authenticated().
