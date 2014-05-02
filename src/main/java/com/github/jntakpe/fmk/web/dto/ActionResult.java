@@ -9,12 +9,7 @@ import com.github.jntakpe.fmk.domain.GenericDomain;
  *
  * @author jntakpe
  */
-public final class ActionResult<T extends GenericDomain> {
-
-    /**
-     * Indique si l'opération a réussi
-     */
-    private final boolean success;
+public class ActionResult<T extends GenericDomain> extends SimpleMessage {
 
     /**
      * Entité sur laquelle l'opération a été effectuée
@@ -27,20 +22,14 @@ public final class ActionResult<T extends GenericDomain> {
     private final Operation operation;
 
     /**
-     * Message a afficher à l'IHM
-     */
-    private final String message;
-
-    /**
      * Données suplémentaires
      */
     private final Object data;
 
     private ActionResult(Builder<T> builder) {
-        this.success = builder.success;
+        super(builder.success, builder.message);
         this.entity = builder.entity;
         this.operation = builder.operation;
-        this.message = builder.message;
         this.data = builder.data;
     }
 
@@ -62,6 +51,35 @@ public final class ActionResult<T extends GenericDomain> {
 
     public Object getData() {
         return data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        ActionResult that = (ActionResult) o;
+
+        if (operation != that.operation) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (operation != null ? operation.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ActionResult{" +
+                "entity=" + entity +
+                ", operation=" + operation +
+                ", data=" + data +
+                '}';
     }
 
     /**

@@ -28,12 +28,7 @@
                 <div class="reg-header">
                     <h2 th:text="#{login.title}"></h2>
                 </div>
-                <div class="alert alert-danger collapse in" th:if="${message != null}">
-                    <i class="fa fa-warning"></i>
-                    <span th:text="${message}"></span>
-                    <button type="button" id="close-alert" class="close">&times;</button>
-                </div>
-
+                <div th:replace="/fragments/alerts :: simpleAlert"></div>
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <input name="username" type="text" th:placeholder="#{login.username}" class="form-control"
@@ -51,5 +46,7 @@
         </div>
     </div>
 </div>
+<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
 </body>
 </html>

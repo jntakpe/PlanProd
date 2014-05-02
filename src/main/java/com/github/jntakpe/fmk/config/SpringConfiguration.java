@@ -1,4 +1,4 @@
-package com.github.jntakpe.pp;
+package com.github.jntakpe.fmk.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -8,23 +8,23 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 /**
- * Classe mère de l'application
+ * Classe mère de l'application et configuration de Spring
  *
  * @author jntakpe
  */
 @Configuration
-@ComponentScan
+@ComponentScan("com.github.jntakpe")
 @EnableAutoConfiguration
-public class PP {
+public class SpringConfiguration {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(PP.class, args);
+        SpringApplication.run(SpringConfiguration.class, args);
     }
 
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:/messages/gui-i18n");
+        messageSource.setBasenames("classpath:/messages/gui-i18n", "classpath:/messages/gui-messages", "classpath:/messages/log-messages");
         messageSource.setCacheSeconds(10);
         return messageSource;
     }

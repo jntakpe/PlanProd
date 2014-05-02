@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<body>
+<div th:fragment="top" class="header">
+    <div class="topbar">
+        <div class="container">
+            <div class="col-md-4">
+                <a th:href="@{/home}">
+                    <img id="logo-cacp" th:src="@{/img/logo-sopra.jpg}" alt="Logo" width="200px" height="50px"/>
+                </a>
+            </div>
+            <div class="col-md-2 date-bar">
+                <span th:text="#{app.name}"></span>
+            </div>
+            <ul class="loginbar pull-right">
+                <li>
+                    <i class="fa fa-user"></i>
+                    <a sec:authentication="name"></a>
+                </li>
+                <li class="topbar-devider"></li>
+                <li id="user-auth">
+                    <i class="fa fa-users"></i>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')">
+                        <span th:text="#{role.admin}"></span>
+                    </a>
+                    <a sec:authorize="hasRole('ROLE_USER')">
+                        <span th:text="#{role.user}"></span>
+                    </a>
+                </li>
+                <li class="topbar-devider"></li>
+                <li>
+                    <i class="fa fa-sign-out"></i>
+                    <a th:href="@{/logout}" th:text="#{btn.logout}"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

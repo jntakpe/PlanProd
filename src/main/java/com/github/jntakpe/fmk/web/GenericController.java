@@ -30,6 +30,7 @@ public abstract class GenericController<T extends GenericDomain<S>, S extends Nu
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView displayList() {
+
         return new ModelAndView(getListViewPath());
     }
 

@@ -1,4 +1,4 @@
-package com.github.jntakpe.pp.config;
+package com.github.jntakpe.fmk.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -34,8 +34,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.
-                formLogin().loginProcessingUrl("/login-process").loginPage("/login").defaultSuccessUrl("/home", true).permitAll().and().
-                logout().logoutUrl("/logout").deleteCookies("JSESSIONID").permitAll().and().
+                formLogin().loginProcessingUrl("/login-process").loginPage("/login").defaultSuccessUrl("/home", true).
+                failureUrl("/login?error=authFailure").permitAll().and().
+                logout().logoutUrl("/logout-process").logoutSuccessUrl("/login?logout=success").deleteCookies("JSESSIONID").permitAll().
+                and().
                 authorizeRequests().
                 antMatchers("/**").authenticated().
                 antMatchers("/admin/**").hasAuthority(Authorities.ROLE_ADMIN.name());
