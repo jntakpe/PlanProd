@@ -7,14 +7,15 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head layout:head="head" th:replace="/fragments/heads :: head"></head>
 <body>
-<div th:replace="/fragments/headers :: top"></div>
+<header class="header">
+    <div th:replace="/fragments/headers :: top"></div>
+    <div th:replace="/fragments/headers :: navbar"></div>
+</header>
 <section layout:fragment="content">
     <p>Page content goes here</p>
 </section>
 <footer>
-    <p>My footer</p>
-
-    <p layout:fragment="custom-footer">Custom footer here</p>
+    <div th:replace="/fragments/footers :: socialFooter"></div>
 </footer>
 </body>
 </html>

@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: jntakpe
+      changes:
+        - createTable:
+            tableName: employee
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                    name: version
+                    type: int
+                    constraints:
+                      nullable: false
+              - column:
+                    name: login
+                    type: varchar(255)
+                    constraints:
+                      nullable: false
+              - column:
+                    name: name
+                    type: varchar(255)
+                    constraints:
+                      nullable: false
+              - column:
+                    name: mail
+                    type: varchar(255)
+              - column:
+                    name: phone
+                    type: int
+              - column:
+                    name: department
+                    type: varchar(255)
+              - column:
+                    name: role
+                    type: varchar(255)

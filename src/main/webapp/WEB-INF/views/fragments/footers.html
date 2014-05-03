@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<body>
+<!-- Social footer -->
+<div th:fragment="socialFooter" class="navbar navbar-default navbar-fixed-bottom copyright">
+    <div class="container">
+        <div class="col-md-6">
+            <p class="copyright-space">
+                2014 | <span th:text="#{app.name}"></span> | <span th:text="#{app.version}"></span> |
+                <a href="mailto:jocelyn.ntakpe@sopragroup.com"><span class="fa fa-envelope"></span> Contact</a>
+            </p>
+        </div>
+        <div class="col-md-2">
+            <ul class="social-icons">
+                <li><a href="https://github.com/jntakpe" data-original-title="Github" class="social_github"></a></li>
+                <li><a href="https://twitter.com/jntakpe" data-original-title="Twitter" class="social_twitter"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

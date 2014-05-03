@@ -26,3 +26,19 @@
 .reg-page label {
     color: #777;
 }
+
+/* Gestion du logo */
+#logo-brand {
+    width: 240px;
+    height: 70px;
+    position: absolute;
+    top: -20px;
+}
+
+/* Gestion du nom de l'application */
+.title-bar a {
+    color: #7C8082;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+}

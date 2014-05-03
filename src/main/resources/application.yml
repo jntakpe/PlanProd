@@ -9,8 +9,8 @@ spring:
   thymeleaf:
     prefix: /WEB-INF/views/
     cache: false
-server:
-  contextPath: /pp
 management:
   contextPath: /admin
+liquibase:
+  change-log: classpath:/db/changelog.yaml
 debug: false
