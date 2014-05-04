@@ -40,3 +40,6 @@ databaseChangeLog:
               - column:
                     name: role
                     type: varchar(255)
+      rollback :
+        -droptable:
+            tableName: employee

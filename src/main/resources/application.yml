@@ -12,5 +12,5 @@ spring:
 management:
   contextPath: /admin
 liquibase:
-  change-log: classpath:/db/changelog.yaml
+  change-log: classpath:/db/changelog.xml
 debug: false
