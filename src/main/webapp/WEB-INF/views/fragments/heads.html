@@ -1,6 +1,6 @@
 <!--Fragment pour les alertes-->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:fragment="head">
     <!-- Meta -->
     <meta charset="utf-8"/>
@@ -9,7 +9,7 @@
     <meta name="author" content="jntakpe"/>
 
     <!-- Title -->
-    <title th:text="#{app.name}"></title>
+    <title layout:title-pattern="$DECORATOR_TITLE | $CONTENT_TITLE" th:text="#{app.name}"></title>
 
     <!-- Style sheets -->
     <link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.min.css}"/>

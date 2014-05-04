@@ -5,14 +5,17 @@
 <html class="ie9" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"> <![endif]-->
 <!--[if !IE]><!-->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head layout:head="head" th:replace="/fragments/heads :: head"></head>
+<head th:replace="/fragments/heads :: head"></head>
 <body>
 <header class="header">
     <div th:replace="/fragments/headers :: top"></div>
     <div th:replace="/fragments/headers :: navbar"></div>
 </header>
+<section th:replace="/fragments/titlebars :: breadcrumb">
+
+</section>
 <section layout:fragment="content">
-    <p>Page content goes here</p>
+
 </section>
 <footer>
     <div th:replace="/fragments/footers :: socialFooter"></div>

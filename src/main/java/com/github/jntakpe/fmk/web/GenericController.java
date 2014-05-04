@@ -40,7 +40,7 @@ public abstract class GenericController<T extends GenericDomain<S>, S extends Nu
      * @return le chemin de la vue
      */
     protected String getListViewPath() {
-        return "lists/" + genericService.getDomainClass().getSimpleName().toLowerCase();
+        return "lists/" + genericService.getEntityClass().getSimpleName().toLowerCase();
     }
 
     /**

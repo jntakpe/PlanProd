@@ -3,7 +3,6 @@ package com.github.jntakpe.fmk.service;
 import com.github.jntakpe.fmk.domain.GenericDomain;
 import com.github.jntakpe.fmk.exception.ConfigurationException;
 import com.github.jntakpe.fmk.repository.GenericRepository;
-import com.github.jntakpe.pp.repository.ProjectRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +25,17 @@ public abstract class GenericService<T extends GenericDomain<S>, S extends Numbe
 
     @Autowired
     protected MessageManager messageManager;
+
+    private final Class<T> entityClass;
+
+    /**
+     * Constructeur. Initialise le champ {@link com.github.jntakpe.fmk.service.GenericService#entityClass} contenant l'entité utilisée.
+     */
+    @SuppressWarnings("unchecked")
+    public GenericService() {
+        ParameterizedType parameterizedType = (ParameterizedType) this.getClass().getGenericSuperclass();
+        entityClass = (Class<T>) parameterizedType.getActualTypeArguments()[0];
+    }
 
     /**
      * Compte le nombre d'entité dans une table
@@ -104,23 +114,12 @@ public abstract class GenericService<T extends GenericDomain<S>, S extends Numbe
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
     public boolean isAvaillable(String fieldName, S id, Object value) {
-        Class<T> domainClass = getDomainClass();
+        Class<T> domainClass = getEntityClass();
         Field field = findField(domainClass, fieldName);
         Class<?> fieldClass = field.getType();
         Method method = findUnicityMethod(domainClass, fieldName, fieldClass);
         T entity = (T) ReflectionUtils.invokeMethod(method, genericRepository, fieldClass.cast(value));
         return entity == null || entity.getId().equals(id);
-    }
-
-    /**
-     * Méthode renvoyant l'entité de la couche domain/model
-     *
-     * @return ressource utilisée par le contrôlleur
-     */
-    @SuppressWarnings("unchecked")
-    public final Class<T> getDomainClass() {
-        ParameterizedType genericSuperclass = (ParameterizedType) this.getClass().getGenericSuperclass();
-        return (Class<T>) genericSuperclass.getActualTypeArguments()[0];
     }
 
     /**
@@ -162,5 +161,9 @@ public abstract class GenericService<T extends GenericDomain<S>, S extends Numbe
             throw new ConfigurationException(msg);
         }
         return method;
+    }
+
+    public Class<T> getEntityClass() {
+        return entityClass;
     }
 }
