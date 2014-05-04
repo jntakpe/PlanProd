@@ -1,7 +1,7 @@
 package com.github.jntakpe.fmk.exception;
 
 /**
- * Classe d'exception utilisée pour les erreurs de développement
+ * Classe d'exception utilisée pour les erreurs de développement/configuration
  *
  * @author jntakpe
  */

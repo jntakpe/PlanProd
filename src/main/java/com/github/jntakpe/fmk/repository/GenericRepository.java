@@ -3,7 +3,6 @@ package com.github.jntakpe.fmk.repository;
 import com.github.jntakpe.fmk.domain.GenericDomain;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
-import org.springframework.data.repository.NoRepositoryBean;
 
 /**
  * Interface à étendre lors de la création d'un repository géré par le framework.
@@ -15,9 +14,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  * @see org.springframework.data.jpa.repository.JpaRepository
  * @see org.springframework.data.querydsl.QueryDslPredicateExecutor
  */
-@NoRepositoryBean
-public interface GenericRepository<T extends GenericDomain<S>, S extends Number>
-        extends JpaRepository<T, S>, QueryDslPredicateExecutor<T> {
-
-
+public interface GenericRepository<T extends GenericDomain<S>, S extends Number> extends JpaRepository<T, S>, QueryDslPredicateExecutor<T> {
 }

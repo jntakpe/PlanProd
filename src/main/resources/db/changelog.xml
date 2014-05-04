@@ -24,7 +24,7 @@
             <column name="mail" type="varchar(255)">
                 <constraints unique="true"/>
             </column>
-            <column name="phone" type="int">
+            <column name="phone" type="varchar(10)">
                 <constraints unique="true"/>
             </column>
             <column name="department" type="varchar(255)"/>

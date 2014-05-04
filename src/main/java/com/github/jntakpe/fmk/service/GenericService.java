@@ -3,6 +3,7 @@ package com.github.jntakpe.fmk.service;
 import com.github.jntakpe.fmk.domain.GenericDomain;
 import com.github.jntakpe.fmk.exception.ConfigurationException;
 import com.github.jntakpe.fmk.repository.GenericRepository;
+import com.github.jntakpe.pp.repository.ProjectRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
