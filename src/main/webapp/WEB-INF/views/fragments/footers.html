@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
 <!-- Social footer -->
-<div th:fragment="socialFooter" class="navbar navbar-default navbar-fixed-bottom copyright">
-    <div class="container">
+<footer th:fragment="socialFooter" class="navbar navbar-default navbar-fixed-bottom copyright">
+<div class="container">
         <div class="col-md-6">
             <p class="copyright-space">
                 <span th:text="#{app.name}"></span> | <span th:text="#{app.version}"></span>
@@ -21,6 +21,6 @@
             </p>
         </div>
     </div>
-</div>
+</footer>
 </body>
 </html>

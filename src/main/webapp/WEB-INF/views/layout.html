@@ -11,17 +11,14 @@
     <div th:replace="/fragments/headers :: top"></div>
     <div th:replace="/fragments/headers :: navbar"></div>
 </header>
-<section th:replace="/fragments/titlebars :: breadcrumb">
+<div th:replace="/fragments/titlebars :: breadcrumb"></div>
+<div layout:fragment="content" class="container">
+    <!-- Contenu de la page -->
+</div>
+<footer th:replace="/fragments/footers :: socialFooter"></footer>
+<div th:replace="/fragments/jslibs :: libs"></div>
+<script layout:fragment="script">
 
-</section>
-<section layout:fragment="content">
-
-</section>
-<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
-<script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
-<script th:src="@{/bower_components/datatables/media/js/jquery.dataTables.js}"></script>
-<footer>
-    <div th:replace="/fragments/footers :: socialFooter"></div>
-</footer>
+</script>
 </body>
 </html>
