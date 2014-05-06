@@ -20,17 +20,32 @@ import java.util.List;
  *
  * @author jntakpe
  */
-public abstract class GenericController<T extends GenericDomain<S>, S extends Number> {
+public abstract class ListController<T extends GenericDomain<S>, S extends Number> {
+
+    @Autowired
+    protected GenericService<T, S> genericService;
 
     @Autowired
     protected MessageManager messageManager;
 
-    @Autowired
-    private GenericService<T, S> genericService;
+    protected static enum ListType {POPUP, DETAIL}
 
+    ;
+
+    /**
+     * Renvoie le type de la liste
+     *
+     * @return type de la liste
+     */
+    public abstract ListType getListType();
+
+    /**
+     * Affiche la vue de la liste
+     *
+     * @return vue de la liste
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView displayList() {
-
         return new ModelAndView(getListViewPath());
     }
 
@@ -66,4 +81,5 @@ public abstract class GenericController<T extends GenericDomain<S>, S extends Nu
     private String currentUsername() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
+
 }

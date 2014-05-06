@@ -4,13 +4,20 @@
 <body>
 
 <!-- Alerte simple -->
-<div th:fragment="simpleAlert">
-    <div id="alert" th:if="${simpleMessage != null}"
-         th:class="${simpleMessage.success} ? 'alert alert-dismissable alert-success' : 'alert alert-dismissable alert-danger'">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <span id="alert-icon" th:class="${simpleMessage.success} ? 'fa fa-check' : 'fa fa-warning'"></span>
-        <span id="alert-message" th:text="${simpleMessage.message}"></span>
-    </div>
+<div th:fragment="simpleAlert" th:if="${simpleMessage != null}"
+     th:class="${simpleMessage.success} ? 'alert alert-dismissable alert-success' : 'alert alert-dismissable alert-danger'">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <span th:class="${simpleMessage.success} ? 'fa fa-check' : 'fa fa-warning'"></span>
+    <span th:text="${simpleMessage.message}"></span>
 </div>
+
+<!-- Bandeau d'alerte pour les actions sur les entités -->
+<div th:fragment="actionAlert"
+     th:class="${actionResult != null} ? (${actionResult.success} ? 'alert alert-dismissable alert-success collapse' : 'alert alert-dismissable alert-danger collapse') : 'alert collapse'">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <span th:class="${actionResult != null} ? (${actionResult.success} ? 'icon-check' : 'icon-warning-sign')"></span>
+    <span th:text="${actionResult != null} ? ${actionResult.message}"></span>
+</div>
+
 </body>
 </html>

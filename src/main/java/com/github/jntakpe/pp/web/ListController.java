@@ -1,6 +1,5 @@
 package com.github.jntakpe.pp.web;
 
-import com.github.jntakpe.fmk.web.GenericController;
 import com.github.jntakpe.pp.domain.Project;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/project")
-public class ProjectController extends GenericController<Project, Integer> {
+public class ListController extends ListController<Project, Integer> {
 
 }

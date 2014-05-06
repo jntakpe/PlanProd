@@ -5,20 +5,19 @@
 <html class="ie9" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"> <![endif]-->
 <!--[if !IE]><!-->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="/fragments/heads :: head"></head>
+<head layout:fragment="head" th:replace="/fragments/heads :: head"></head>
 <body>
-<header class="header">
+<header layout:fragment="header" class="header">
     <div th:replace="/fragments/headers :: top"></div>
     <div th:replace="/fragments/headers :: navbar"></div>
 </header>
-<div th:replace="/fragments/titlebars :: breadcrumb"></div>
+<div layout:fragment="titlebars" th:replace="/fragments/titlebars :: breadcrumb"></div>
+<div layout:fragment="alert" th:replace="/fragments/alerts :: actionAlert"></div>
 <div layout:fragment="content" class="container">
     <!-- Contenu de la page -->
 </div>
-<footer th:replace="/fragments/footers :: socialFooter"></footer>
-<div th:replace="/fragments/jslibs :: libs"></div>
-<script layout:fragment="script">
-
-</script>
+<footer layout:fragment="footer" th:replace="/fragments/footers :: socialFooter"></footer>
+<div layout:fragment="jslibs" th:replace="/fragments/jslibs :: libs"></div>
+<script layout:fragment="script"></script>
 </body>
 </html>
