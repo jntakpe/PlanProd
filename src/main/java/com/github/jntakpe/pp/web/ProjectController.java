@@ -1,5 +1,6 @@
 package com.github.jntakpe.pp.web;
 
+import com.github.jntakpe.fmk.web.PopupController;
 import com.github.jntakpe.pp.domain.Project;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/project")
-public class ListController extends ListController<Project, Integer> {
+public class ProjectController extends PopupController<Project, Integer> {
 
 }

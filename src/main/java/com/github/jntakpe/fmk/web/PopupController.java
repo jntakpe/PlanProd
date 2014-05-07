@@ -16,4 +16,6 @@ public abstract class PopupController<T extends GenericDomain<S>, S extends Numb
     public ListType getListType() {
         return ListType.POPUP;
     }
+
+
 }

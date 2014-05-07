@@ -48,19 +48,19 @@
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav" th:with="servletPath=${#httpServletRequest.getServletPath()}">
                 <li th:with="linkPath='/home'" th:class="${servletPath == linkPath} ? 'active'">
-                    <a th:href="@{${linkPath}}"><i class="fa fa-home"></i> <span th:text="#{menu.home}"></span></a>
+                    <a th:href="@{${linkPath}}"><i class="fa fa-home"></i> <span th:text="#{home.menu}"></span></a>
                 </li>
                 <li th:with="linkPath='/project'" th:class="${servletPath == linkPath} ? 'active'">
-                    <a th:href="@{${linkPath}}"><i class="fa"></i> <span th:text="#{menu.project}"></span></a>
+                    <a th:href="@{${linkPath}}"><i class="fa"></i> <span th:text="#{project.menu}"></span></a>
                 </li>
                 <li th:with="linkPath='/employee'" th:class="${servletPath == linkPath} ? 'active'">
-                    <a th:href="@{${linkPath}}"><i class="fa"></i> <span th:text="#{menu.employee}"></span></a>
+                    <a th:href="@{${linkPath}}"><i class="fa"></i> <span th:text="#{employee.menu}"></span></a>
                 </li>
                 <li th:with="linkPath='/planning'" th:class="${servletPath == linkPath} ? 'active'">
-                    <a th:href="@{${linkPath}}"><i class="fa"></i> <span th:text="#{menu.planning}"></span></a>
+                    <a th:href="@{${linkPath}}"><i class="fa"></i> <span th:text="#{planning.menu}"></span></a>
                 </li>
                 <li th:with="linkPath='/production'" th:class="${servletPath == linkPath} ? 'active'">
-                    <a th:href="@{${linkPath}}"><i class="fa"></i> <span th:text="#{menu.production}"></span></a>
+                    <a th:href="@{${linkPath}}"><i class="fa"></i> <span th:text="#{production.menu}"></span></a>
                 </li>
             </ul>
         </div>

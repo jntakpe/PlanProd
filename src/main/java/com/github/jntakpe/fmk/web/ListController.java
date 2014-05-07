@@ -28,9 +28,12 @@ public abstract class ListController<T extends GenericDomain<S>, S extends Numbe
     @Autowired
     protected MessageManager messageManager;
 
-    protected static enum ListType {POPUP, DETAIL}
-
-    ;
+    /**
+     * Type de la liste
+     */
+    protected enum ListType {
+        POPUP, DETAIL
+    }
 
     /**
      * Renvoie le type de la liste
@@ -68,6 +71,12 @@ public abstract class ListController<T extends GenericDomain<S>, S extends Numbe
         return genericService.findAll();
     }
 
+    /**
+     * Suppression d'un enregistrement
+     *
+     * @param id identifiant de l'enregistrement à supprimer
+     * @return le résultat de l'opération
+     */
     @ResponseBody
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ActionResult<T> delete(@PathVariable S id) {
@@ -78,7 +87,12 @@ public abstract class ListController<T extends GenericDomain<S>, S extends Numbe
         return new ActionResult.SuccessBuilder<>(entity, Operation.DELETE).message(guiMsg).build();
     }
 
-    private String currentUsername() {
+    /**
+     * Renvoi le nom de l'utilisateur courant
+     *
+     * @return le nom de l'utilsateur courant
+     */
+    protected String currentUsername() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
