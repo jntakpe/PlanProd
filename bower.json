@@ -5,6 +5,8 @@
         "jquery" : "1.11.0",
         "bootstrap" : "latest",
         "datatables" : "latest",
-        "font-awesome" : "latest"
+        "font-awesome": "latest",
+        "jquery.validation": "latest",
+        "jquery-form": "latest"
     }
 }

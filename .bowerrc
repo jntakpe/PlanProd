@@ -1,5 +1,3 @@
 {
-    "directory": "src/main/webapp/bower_components",
-    "proxy":"http://ptx.proxy.corp.sopra:8080",
-    "https-proxy":"http://ptx.proxy.corp.sopra:8080"
+    "directory": "src/main/webapp/bower_components"
 }
