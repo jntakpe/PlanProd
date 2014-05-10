@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <!--[if IE 8]>
-<html class="ie8" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout">
+<html class="ie8">
 <![endif]-->
 <!--[if IE 9]>
-<html class="ie9" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout">
+<html class="ie9">
 <![endif]-->
 <!--[if !IE]><!-->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout" th:with="title=#{project.menu}">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" layout:decorator="layout" th:with="title=#{project.menu}">
 <body>
 <div layout:fragment="content">
     <div class="search-frame">
@@ -22,14 +20,10 @@
                     <input id="search-name" name="name" type="text" class="form-control" th:placeholder="#{project.name}"/>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="form-group">
-                    <input id="search-customer" name="customer" type="text" class="form-control" th:placeholder="#{project.customer}"/>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <input id="search-phase" name="phase" type="text" class="form-control" th:placeholder="#{project.phase}"/>
+                    <input id="search-description" name="description" type="text" class="form-control"
+                           th:placeholder="#{project.description}"/>
                 </div>
             </div>
             <div class="col-md-4">
@@ -47,18 +41,18 @@
             <thead>
             <tr>
                 <th th:text="#{project.name}"></th>
-                <th th:text="#{project.customer}"></th>
-                <th th:text="#{project.phase}"></th>
+                <th th:text="#{project.description}"></th>
                 <th th:text="#{project.manager}"></th>
-                <th th:text="#{project.employees}"></th>
-                <th th:text="#{project.ssps}"></th>
                 <th th:text="#{table.detail}"></th>
-                <th th:text="#{table.delete}"></th>
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <th th:text="#{table.delete}"></th>
+                </div>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td colspan="8" class="dataTables_empty" th:text="#{list.load}"></td>
+                <td th:colspan="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} ? 5 : 4"
+                    class="dataTables_empty" th:text="#{list.load}"></td>
             </tr>
             </tbody>
         </table>
@@ -66,7 +60,19 @@
 </div>
 <script type="text/javascript" layout:fragment="script">
     $(function () {
-        $('#dt_projects').DataTable();
+        $('#dt_projects').DataTable({
+            ajax: {
+                url: window.location.pathname + "/list",
+                dataSrc: ''
+            },
+            columns: [
+                {data: "name"},
+                {data: "description"},
+                {data: "manager.name"},
+                {data: "name"},
+                {data: "name"}
+            ]
+        });
     });
 </script>
 </body>

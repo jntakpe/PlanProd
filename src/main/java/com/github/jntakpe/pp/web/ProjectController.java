@@ -14,4 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/project")
 public class ProjectController extends PopupController<Project, Integer> {
 
+//    @RequestMapping(value = "/list", method = RequestMethod.GET)
+//    public List<Project> test() {
+//        return genericService.findAll();
+//    }
+
 }

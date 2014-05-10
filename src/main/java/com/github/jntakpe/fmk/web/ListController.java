@@ -66,6 +66,7 @@ public abstract class ListController<T extends GenericDomain<S>, S extends Numbe
      *
      * @return toutes les entités de la table
      */
+    @ResponseBody
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<T> findListData() {
         return genericService.findAll();

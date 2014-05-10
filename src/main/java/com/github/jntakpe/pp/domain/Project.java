@@ -1,5 +1,7 @@
 package com.github.jntakpe.pp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.jntakpe.fmk.domain.GenericDomain;
 
 import javax.persistence.Entity;
@@ -23,9 +25,11 @@ public class Project extends GenericDomain<Integer> {
 
     private String description;
 
+    @JsonIgnoreProperties({"managedProjects", "dailyConsumptions"})
     @ManyToOne
     private Employee manager;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "project")
     private Set<Task> tasks;
 
