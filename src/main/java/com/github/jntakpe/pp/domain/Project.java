@@ -3,10 +3,10 @@ package com.github.jntakpe.pp.domain;
 import com.github.jntakpe.fmk.domain.GenericDomain;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.Set;
 
 /**
@@ -21,20 +21,13 @@ public class Project extends GenericDomain<Integer> {
     @NotNull
     private String name;
 
-    @NotNull
-    private String customer;
+    private String description;
 
-    @NotNull
-    private String phase;
-
-    @NotNull
-    private Date start;
-
-    @NotNull
-    private Date end;
+    @ManyToOne
+    private Employee manager;
 
     @OneToMany(mappedBy = "project")
-    private Set<EmployeeProject> employeeProjects;
+    private Set<Task> tasks;
 
     public String getName() {
         return name;
@@ -44,44 +37,28 @@ public class Project extends GenericDomain<Integer> {
         this.name = name;
     }
 
-    public String getCustomer() {
-        return customer;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getPhase() {
-        return phase;
+    public Employee getManager() {
+        return manager;
     }
 
-    public void setPhase(String phase) {
-        this.phase = phase;
+    public void setManager(Employee manager) {
+        this.manager = manager;
     }
 
-    public Date getStart() {
-        return start;
+    public Set<Task> getTasks() {
+        return tasks;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
-    public Date getEnd() {
-        return end;
-    }
-
-    public void setEnd(Date end) {
-        this.end = end;
-    }
-
-    public Set<EmployeeProject> getEmployeeProjects() {
-        return employeeProjects;
-    }
-
-    public void setEmployeeProjects(Set<EmployeeProject> employeeProjects) {
-        this.employeeProjects = employeeProjects;
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override

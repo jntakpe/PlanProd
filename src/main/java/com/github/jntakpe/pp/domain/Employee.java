@@ -34,10 +34,11 @@ public class Employee extends GenericDomain<Integer> {
     @Digits(integer = 5, fraction = 0)
     private String phone;
 
-    private String department;
+    @OneToMany(mappedBy = "manager")
+    private Set<Project> managedProjects;
 
     @OneToMany(mappedBy = "employee")
-    private Set<EmployeeProject> employeeProjects;
+    private Set<DailyConsumption> dailyConsumptions;
 
     public String getLogin() {
         return login;
@@ -79,20 +80,20 @@ public class Employee extends GenericDomain<Integer> {
         this.phone = phone;
     }
 
-    public String getDepartment() {
-        return department;
+    public Set<Project> getManagedProjects() {
+        return managedProjects;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setManagedProjects(Set<Project> managedProjects) {
+        this.managedProjects = managedProjects;
     }
 
-    public Set<EmployeeProject> getEmployeeProjects() {
-        return employeeProjects;
+    public Set<DailyConsumption> getDailyConsumptions() {
+        return dailyConsumptions;
     }
 
-    public void setEmployeeProjects(Set<EmployeeProject> employeeProjects) {
-        this.employeeProjects = employeeProjects;
+    public void setDailyConsumptions(Set<DailyConsumption> dailyConsumptions) {
+        this.dailyConsumptions = dailyConsumptions;
     }
 
     @Override

@@ -50,7 +50,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Default fmk -->
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
 
         <!-- 3rd party libraries -->
         <commons-lang3.version>3.2.1</commons-lang3.version>

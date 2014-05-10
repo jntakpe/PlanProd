@@ -18,8 +18,8 @@
             <column name="name" type="varchar(255)">
                 <constraints unique="true" nullable="false"/>
             </column>
-            <column name="role" type="varchar(255)">
-                <constraints nullable="false"/>
+            <column name="authority" type="varchar(255)">
+            <constraints nullable="false"/>
             </column>
             <column name="mail" type="varchar(255)">
                 <constraints unique="true"/>
@@ -27,7 +27,6 @@
             <column name="phone" type="varchar(10)">
                 <constraints unique="true"/>
             </column>
-            <column name="department" type="varchar(255)"/>
         </createTable>
         <createTable tableName="project">
             <column name="id" type="int" autoIncrement="true">
@@ -39,39 +38,51 @@
             <column name="name" type="varchar(255)">
                 <constraints unique="true" nullable="false"/>
             </column>
-            <column name="customer" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="phase" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="start" type="date">
-                <constraints nullable="false"/>
-            </column>
-            <column name="end" type="date">
-                <constraints nullable="false"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="manager_id" type="int">
+            <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="employee_project">
+        <addForeignKeyConstraint baseTableName="project" baseColumnNames="manager_id" constraintName="fk_project_manager"
+                                 referencedTableName="employee" referencedColumnNames="id"/>
+        <createTable tableName="task">
             <column name="id" type="int" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="pk_employee_project" nullable="false"/>
+                <constraints primaryKey="true" primaryKeyName="pk_task" nullable="false"/>
+            </column>
+            <column name="version" type="int">
+            <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)"/>
+            <column name="project_id" type="int">
+            <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="task" baseColumnNames="project_id" constraintName="fk_task_project"
+                                 referencedTableName="project" referencedColumnNames="id"/>
+        <createTable tableName="daily_consumption">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_daily_consumption" nullable="false"/>
             </column>
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="project_id" type="int">
-                <constraints nullable="false"/>
+            <column name="task_id" type="int">
+            <constraints nullable="false"/>
             </column>
             <column name="employee_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="task" type="int">
-                <constraints nullable="false"/>
+            <column name="date" type="date">
+            <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="employee_project" baseColumnNames="project_id" constraintName="fk_project_id"
-                                 referencedTableName="project" referencedColumnNames="id"/>
-        <addForeignKeyConstraint baseTableName="employee_project" baseColumnNames="employee_id" constraintName="fk_employee_id"
-                                 referencedTableName="employee" referencedColumnNames="id"/>
+        <addUniqueConstraint tableName="daily_consumption" columnNames="task_id, employee_id, date"/>
+        <addForeignKeyConstraint baseTableName="daily_consumption" baseColumnNames="task_id" constraintName="fk_daily_consumption_task"
+                                 referencedTableName="task" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="daily_consumption" baseColumnNames="employee_id"
+                                 constraintName="fk_daily_consumption_employee" referencedTableName="employee" referencedColumnNames="id"/>
     </changeSet>
 </databaseChangeLog>
