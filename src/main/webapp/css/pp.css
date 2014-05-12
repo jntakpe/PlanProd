@@ -1,3 +1,23 @@
+/* Font awesome icon new size*/
+.fa-1x5 {
+    font-size: 1.5em;
+}
+
+/* Table ajustment */
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    vertical-align: middle;
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+    padding: 5px 5px;
+}
+
 /* Datatables buttons */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     padding: 0;

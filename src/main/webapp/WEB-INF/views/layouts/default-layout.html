@@ -13,8 +13,23 @@
 </header>
 <div layout:fragment="titlebars" th:replace="/fragments/titlebars :: breadcrumb"></div>
 <div layout:fragment="alert" th:replace="/fragments/alerts :: actionAlert"></div>
-<div layout:fragment="content" class="container">
-    <!-- Contenu de la page -->
+<!-- Contenu de la page -->
+<div class="container">
+    <!-- Critères de recherche -->
+    <div class="search-frame">
+        <div class="headline">
+            <h4 th:text="#{search.headline}"></h4>
+        </div>
+        <form class="row" novalidate="novalidate">
+            <div layout:fragment="search" class="col-md-11 search"></div>
+        </form>
+    </div>
+    <div class="data-frame">
+        <div class="headline">
+            <h4 th:text="#{table.headline}"></h4>
+        </div>
+        <table layout:fragment="table" class="table table-striped table-condensed table-hover" cellpadding="0" width="100%"></table>
+    </div>
 </div>
 <footer layout:fragment="footer" th:replace="/fragments/footers :: socialFooter"></footer>
 <div layout:fragment="jslibs" th:replace="/fragments/jslibs :: libs"></div>
