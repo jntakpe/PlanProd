@@ -7,7 +7,7 @@
 <![endif]-->
 <!--[if !IE]><!-->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" layout:decorator="layouts/default-layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" layout:decorator="layouts/list-layout"
       th:with="title=#{project.menu}">
 <body>
 <div layout:fragment="search">
@@ -16,8 +16,8 @@
             <input id="search-name" name="name" type="text" class="form-control" th:placeholder="#{project.name}"/>
         </div>
     </div>
-    <div class="col-md-5">
-        <div class="form-group">
+    <div class="col-md-6">
+    <div class="form-group">
             <input id="search-description" name="description" type="text" class="form-control" th:placeholder="#{project.description}"/>
         </div>
     </div>
