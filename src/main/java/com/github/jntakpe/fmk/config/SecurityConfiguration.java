@@ -38,6 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 failureUrl("/login?error=authFailure").permitAll().and().
                 logout().logoutUrl("/logout-process").logoutSuccessUrl("/login?logout=success").deleteCookies("JSESSIONID").permitAll().
                 and().
+                csrf().disable().
                 authorizeRequests().
                 antMatchers("/**").authenticated().
                 antMatchers("/admin/**").hasAuthority(Authority.ROLE_ADMIN.name());
