@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <!--[if IE 8]>
-<html class="ie8" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"> <![endif]-->
+<html class="ie8"> <![endif]-->
 <!--[if IE 9]>
-<html class="ie9" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"> <![endif]-->
+<html class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layouts/default-layout">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" layout:decorator="layouts/default-layout">
 <body>
 <!-- Contenu de la page -->
 <div layout:fragment="content" class="container">
@@ -30,6 +28,13 @@
         <!-- Table -->
         <table layout:fragment="table" class="table table-striped table-condensed table-hover" cellpadding="0"
                width="100%"></table>
+        <button type="button" class="btn btn-u" sec:authorize="hasRole('ROLE_ADMIN')"
+                onclick="fmk.redirectNew($(this))">
+            <i class="fa fa-plus"></i> <span th:text="#{btn.new}"></span>
+        </button>
+        <button type="button" class="btn btn-u btn-u-blue pull-right">
+            <i class="fa fa-file"></i> <span th:text="#{btn.export}"></span>
+        </button>
     </div>
 </div>
 </body>

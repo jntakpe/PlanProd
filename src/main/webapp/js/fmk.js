@@ -22,6 +22,11 @@ var fmk = {
         reload: new TableAttrs("reload", false),
 
         /**
+         * Indique le type de table (detail ou popup)
+         */
+        tableType: new TableAttrs("type", "popup"),
+
+        /**
          * Indique l'id de la popup permettant d'éditer la table (utile en cas de plusieurs popup)
          */
         editPopupId: new TableAttrs("edit-popup", "dt-popup"),
@@ -68,12 +73,12 @@ var fmk = {
     },
 
     /**
-     * Ajoute l'id de l'enregistrement courant à uri en prennant en compte l'ajout conditionnel du '/' de séparation.
-     * @param id identifiant de l'enregistrement courant
+     * Ajoute une donnée à l'uri en prennant en compte l'ajout conditionnel du '/' de séparation.
+     * @param urlAdd donnée à ajouter à l'uri
      */
-    pathResolver: function (id) {
+    pathResolver: function (urlAdd) {
         var path = window.location.pathname;
-        return path.match(/\/$/) ? path + id : path + "/" + id;
+        return path.match(/\/$/) ? path + urlAdd : path + "/" + urlAdd;
     },
 
     displaySuccess: function (result) {
@@ -82,6 +87,20 @@ var fmk = {
 
     displayError: function (result) {
 
+    },
+
+    /**
+     * Gère les clics sur les boutons de création d'un nouvel enregistrement et redirige vers la popup ou le détail en
+     * fonction du type de table
+     * @param $event événement de clic sur le bouton nouveau
+     */
+    redirectNew: function ($event) {
+        var $table = $event.closest('table[id^=dt_]'), tableType = fmk.getTableAttr($table, fmk.tableAttrs.tableType);
+        if (tableType === "detail") {
+            window.location.pathname = fmk.pathResolver("new");
+        } else {
+            //TODO call new popup
+        }
     },
 
     /**
@@ -181,9 +200,6 @@ $(function () {
          */
         fmkTable: function (dtOptions, $popup, validRules) {
             var dataTable;
-            if ($.isPlainObject(dtOptions)) {
-                throw "Les paramètres de la dataTable doivent être un objet 'literal'";
-            }
             if (dtOptions.serverSide && !dtOptions.ajax.dataSrc) {
                 dtOptions.ajax.dataSrc = 'data';
             }
