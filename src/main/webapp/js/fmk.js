@@ -95,7 +95,7 @@ var fmk = {
      * @param $event événement de clic sur le bouton nouveau
      */
     redirectNew: function ($event) {
-        var $table = $event.closest('table[id^=dt_]'), tableType = fmk.getTableAttr($table, fmk.tableAttrs.tableType);
+        var $table = $event.parent('.data-frame').find('table[id^=dt_]'), tableType = fmk.getTableAttr($table, fmk.tableAttrs.tableType);
         if (tableType === "detail") {
             window.location.pathname = fmk.pathResolver("new");
         } else {
@@ -179,7 +179,7 @@ var fmk = {
                 if (fmk.getTableAttr($table, fmk.tableAttrs.reload)) {
                     dataTable.ajax.reload();
                 } else {
-                    dataTable.remove($event.closest('tr')).draw();
+                    dataTable.row($event.closest('tr')).remove().draw();
                 }
             }
         });
@@ -203,11 +203,26 @@ $(function () {
             if (dtOptions.serverSide && !dtOptions.ajax.dataSrc) {
                 dtOptions.ajax.dataSrc = 'data';
             }
-            dataTable = this.dataTable(dtOptions);
-            if ($popup.length) {
+            dataTable = this.DataTable(dtOptions);
+            if ($popup) {
                 //TODO later
+            } else {
+                this.data(fmk.tableAttrs.tableType.field, 'detail');
             }
             this.data('dt', dataTable);
+        },
+
+        /**
+         * Créé une table gérée par le framework avec une colonne de détail et une colonne de suppression si nécessaire.
+         * @param dtOptions paramètres de la table (ref : https://datatables.net/reference/index)
+         */
+        detailTable: function (dtOptions) {
+            var columns = dtOptions.columns, headSize = this.find('thead th').length;
+            if (headSize === columns.length + 2) {
+                columns.push(fmk.detailCol());
+                columns.push(fmk.deleteCol());
+            }
+            this.fmkTable(dtOptions);
         }
     });
 });

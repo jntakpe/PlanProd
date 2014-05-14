@@ -40,13 +40,11 @@
 </table>
 <script type="text/javascript" layout:fragment="script">
     $(function () {
-        $('#dt_projects').fmkTable({
+        $('#dt_projects').detailTable({
             columns: [
                 {data: "name"},
                 {data: "description"},
-                {data: "manager.name"},
-                fmk.detailCol(),
-                fmk.deleteCol()
+                {data: "manager.name"}
             ]
         });
     });
