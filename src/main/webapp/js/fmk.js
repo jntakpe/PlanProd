@@ -36,7 +36,17 @@ var fmk = {
          * Base de l'uri afin de pouvoir appeler un contrôleur différent pour la suppression. Par exemple, si notre url courante est
          * '/fmk/param' et que nous souhaitons appeler l'url '/fmk/toto', la valeur doit être '/fmk/toto'.
          */
-        deleteUri: new TableAttrs("delete-uri", window.location.pathname)
+        deleteUri: new TableAttrs("delete-uri", window.location.pathname),
+
+        /**
+         * Callback appelé après une modification de ligne
+         */
+        editCallback: new TableAttrs("edit-cb", null),
+
+        /**
+         * Callback appelé après la suppression d'une ligne
+         */
+        deleteCallback: new TableAttrs("delete-cb", null)
     },
 
     /**
@@ -64,6 +74,14 @@ var fmk = {
     pathResolver: function (id) {
         var path = window.location.pathname;
         return path.match(/\/$/) ? path + id : path + "/" + id;
+    },
+
+    displaySuccess: function (result) {
+
+    },
+
+    displayError: function (result) {
+
     },
 
     /**
@@ -132,15 +150,48 @@ var fmk = {
      */
     removeRow: function (id, $event) {
         "use strict";
-        var $table = $event.closest("table[id^=dt_]");
+        var $table = $event.closest('table[id^=dt_]'), dataTable = $table.data('dt');
         if (!$table.length) {
             throw "La table est introuvable. Le nom d'une datatable géré par le framework doit commencer par 'dt_'.";
         }
-        $.ajax(fmk.pathResolver(id), {type: 'DELETE'}).done(alert('YEAH BABY'));
+        $.ajax(fmk.pathResolver(id), {type: 'DELETE'}).done(function (response) {
+            if (response.success) {
+                fmk.displaySuccess(response);
+                if (fmk.getTableAttr($table, fmk.tableAttrs.reload)) {
+                    dataTable.ajax.reload();
+                } else {
+                    dataTable.remove($event.closest('tr')).draw();
+                }
+            }
+        });
     }
 };
 
 $(function () {
     "use strict";
 
+    $.fn.extend({
+
+        /**
+         * Créé une table gérée par le framework puis une stocke une référence vers la dataTable. Dans le cas, d'une
+         * table avec popup gère également la validation de la popup.
+         * @param dtOptions paramètres de la table (ref : https://datatables.net/reference/index)
+         * @param [$popup] popup à afficher pour les modifications de table
+         * @param [validRules] paramètres de validation de la popup (ref : http://jqueryvalidation.org/category/plugin/)
+         */
+        fmkTable: function (dtOptions, $popup, validRules) {
+            var dataTable;
+            if ($.isPlainObject(dtOptions)) {
+                throw "Les paramètres de la dataTable doivent être un objet 'literal'";
+            }
+            if (dtOptions.serverSide && !dtOptions.ajax.dataSrc) {
+                dtOptions.ajax.dataSrc = 'data';
+            }
+            dataTable = this.dataTable(dtOptions);
+            if ($popup.length) {
+                //TODO later
+            }
+            this.data('dt', dataTable);
+        }
+    });
 });

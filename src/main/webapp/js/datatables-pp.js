@@ -1,26 +1,30 @@
 /* Set the defaults for DataTables initialisation */
 $.extend(true, $.fn.dataTable.defaults, {
-    "sDom": "<'row'>" +
+    "dom": "<'row'>" +
         "t" +
         "<'row'<'col-xs-4'i><'col-xs-8'p>>",
-    "oLanguage": {
-        "sProcessing": "Traitement en cours...",
-        "sSearch": "Rechercher&nbsp;:",
-        "sLengthMenu": "_MENU_",
-        "sInfo": "El&eacute;ments _START_ &agrave; _END_ sur _TOTAL_",
-        "sInfoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-        "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-        "sInfoPostFix": "",
-        "sLoadingRecords": "Chargement en cours...",
-        "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
-        "sEmptyTable": "Aucune donn&eacute;e disponible dans la table",
-        "oPaginate": {
-            "sPrevious": "Précédent",
-            "sNext": "Suivant"
+    "ajax": {
+        "url": window.location.pathname + '/list',
+        "dataSrc": ''
+    },
+    "language": {
+        "processing": "Traitement en cours...",
+        "search": "Rechercher&nbsp;:",
+        "lengthMenu": "_MENU_",
+        "info": "El&eacute;ments _START_ &agrave; _END_ sur _TOTAL_",
+        "infoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+        "infoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+        "infoPostFix": "",
+        "loadingRecords": "Chargement en cours...",
+        "zeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+        "emptyTable": "Aucune donn&eacute;e disponible dans la table",
+        "paginate": {
+            "previous": "Précédent",
+            "next": "Suivant"
         },
-        "oAria": {
-            "sSortAscending": ": activer pour trier la colonne par ordre croissant",
-            "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
+        "aria": {
+            "sortAscending": ": activer pour trier la colonne par ordre croissant",
+            "sortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
         }
     }
 });

@@ -8,8 +8,6 @@ spring:
     driverClassName: org.postgresql.Driver
   jpa:
     openInView: false
-    hibernate:
-      ddl-auto: validate
   thymeleaf:
     prefix: /WEB-INF/views/
     cache: false
