@@ -82,11 +82,27 @@ var fmk = {
     },
 
     displaySuccess: function (result) {
-
+        "use strict";
+        var $alert = $('#layout-alert'), $icon = $alert.find('.ico'), $msg = $alert.find('.msg');
+        $msg.text(result.message);
+        $alert.addClass('alert-success');
+        $alert.addClass('in');
     },
 
     displayError: function (result) {
 
+    },
+
+    /**
+     * Sauvegarde la dernière opération effectuée sur la table
+     * @param action dernière action
+     */
+    saveLastAction: function (action) {
+        $('#layout-alert').data('lastAction', action);
+    },
+
+    revert: function () {
+        var action = $('#layout-alert').data('lastAction');
     },
 
     /**
@@ -95,7 +111,8 @@ var fmk = {
      * @param $event événement de clic sur le bouton nouveau
      */
     redirectNew: function ($event) {
-        var $table = $event.parent('.data-frame').find('table[id^=dt_]'), tableType = fmk.getTableAttr($table, fmk.tableAttrs.tableType);
+        var $table = $event.parent('.data-frame').find('table[id^=dt_]'),
+            tableType = fmk.getTableAttr($table, fmk.tableAttrs.tableType);
         if (tableType === "detail") {
             window.location.pathname = fmk.pathResolver("new");
         } else {
@@ -181,6 +198,9 @@ var fmk = {
                 } else {
                     dataTable.row($event.closest('tr')).remove().draw();
                 }
+            } else {
+                fmk.displayError(response);
+                dataTable.ajax.reload();
             }
         });
     }

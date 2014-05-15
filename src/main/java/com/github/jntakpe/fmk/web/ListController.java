@@ -84,7 +84,7 @@ public abstract class ListController<T extends GenericDomain<S>, S extends Numbe
         T entity = genericService.findOne(id);
         genericService.delete(id);
         messageManager.info("entity.delete", currentUsername(), entity);
-        String guiMsg = messageManager.getMessage("delete.success");
+        String guiMsg = messageManager.getMessage("delete.success", entity);
         return new ActionResult.SuccessBuilder<>(entity, Operation.DELETE).message(guiMsg).build();
     }
 

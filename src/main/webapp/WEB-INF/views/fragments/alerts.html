@@ -12,11 +12,15 @@
 </div>
 
 <!-- Bandeau d'alerte pour les actions sur les entités -->
-<div th:fragment="actionAlert"
-     th:class="${actionResult != null} ? (${actionResult.success} ? 'alert alert-dismissable alert-success collapse' : 'alert alert-dismissable alert-danger collapse') : 'alert collapse'">
+<div th:fragment="actionAlert" id="layout-alert"
+     th:class="${actionResult != null} ? (${actionResult.success} ? 'alert alert-dismissable alert-success fade' : 'alert alert-dismissable alert-danger fade') : 'alert fade'">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <span th:class="${actionResult != null} ? (${actionResult.success} ? 'icon-check' : 'icon-warning-sign')"></span>
-    <span th:text="${actionResult != null} ? ${actionResult.message}"></span>
+    <i th:class="${actionResult != null} ? (${actionResult.success} ? 'fa fa-check ico' : 'fa fa-warning ico')"></i>
+    <span class="msg" th:text="${actionResult != null} ? ${actionResult.message}"></span>
+    <span class="cancel-msg" th:text="#{revert.msg}"></span>
+    <button class="btn btn-warning btn-sm" type="button">
+        <i class="fa fa-undo"></i> <span th:text="#{btn.revert}"></span>
+    </button>
 </div>
 
 </body>

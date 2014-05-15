@@ -12,9 +12,11 @@
     <div th:replace="/fragments/headers :: navbar"></div>
 </header>
 <div layout:fragment="titlebars" th:replace="/fragments/titlebars :: breadcrumb"></div>
-<div layout:fragment="alert" th:replace="/fragments/alerts :: actionAlert"></div>
-<!-- Contenu de la page -->
-<div layout:fragment="content" class="container">
+<div class="container">
+    <div th:replace="/fragments/alerts :: actionAlert"></div>
+    <div layout:fragment="content">
+        <!-- Contenu de la page -->
+    </div>
 </div>
 <footer layout:fragment="footer" th:replace="/fragments/footers :: socialFooter"></footer>
 <div layout:fragment="jslibs" th:replace="/fragments/jslibs :: libs"></div>
